@@ -11,13 +11,21 @@ function App() {
     {rowNumber : 4,rowDescription:'charge phone',rowAssignee:'user2'}
   ])
 
-  const addTodo = ()=>{
+  const addTodo = (description,assigned)=>{
+
+    let rowNumber = 0;
  if(todos.length>0){
-    const newTodo = {rowNumber : todos.length + 1 ,rowDescription:'charge the laptop',rowAssignee :'user3'}
-   
+
+    rowNumber=todos[todos.length - 1].rowNumber + 1;
+
+  }else{
+
+    rowNumber = 1;
+  } 
+  const newTodo = {rowNumber : rowNumber ,rowDescription:description,rowAssignee :assigned} 
   setTodos(todos => [...todos,newTodo]);
    console.log(todos)
-  }
+  
   }
   return (
     <div className="mt-5 container">
@@ -31,7 +39,7 @@ function App() {
           <button className='btn btn-primary' onClick={addTodo}>
             Add New todo
             </button>
-            <NewTodoForm/>
+            <NewTodoForm addTodo={addTodo}/>   {/* passing a method as props */}
         </div>
       </div>
     </div>

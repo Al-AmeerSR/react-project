@@ -12,9 +12,11 @@ return(
                 </tr>
               </thead>
               <tbody>     
-                    { props.todos.map(todo=>(
-
-                        <TableRowItem rowNumber={todo.rowNumber}
+                    { props.todos.map(todo=>(    //looping through each item to display
+                      
+                        <TableRowItem 
+                        key={todo.rowNumber} //to uniquely identify the rowitem
+                        rowNumber={todo.rowNumber}
                         rowAssignee={todo.rowAssignee}
                         rowDescription={todo.rowDescription}
                         />
