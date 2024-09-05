@@ -4,6 +4,8 @@ import TodoTable from './components/TodTable';
 import NewTodoForm from './components/NewTodoForm';
 function App() {
 
+  const [showAddToDoForm,setshowAddToDoForm] = useState(false);
+
   const [todos,setTodos] =useState([
     { rowNumber : 1,rowDescription:'Feed the puppy',rowAssignee:'user1'},
     {rowNumber : 2,rowDescription:'Read book',rowAssignee:'user2'},
@@ -27,6 +29,17 @@ function App() {
    console.log(todos)
   
   }
+
+  const deleteTodo = (deleteTodorowNumber) =>{
+
+    let filtered = todos.filter(function(value){
+
+      return value.rowNumber !== deleteTodorowNumber;
+    });
+
+    setTodos(filtered);
+  }
+
   return (
     <div className="mt-5 container">
       <div className="card">
@@ -35,11 +48,10 @@ function App() {
         </div>
         <div className="card-body" >
          
-        <TodoTable todos={todos}/>
-          <button className='btn btn-primary' onClick={addTodo}>
-            Add New todo
-            </button>
-            <NewTodoForm addTodo={addTodo}/>   {/* passing a method as props */}
+        <TodoTable todos={todos} deleteTodo={deleteTodo}/>
+          <button className='btn btn-primary' onClick={()=>setshowAddToDoForm(!showAddToDoForm)}>New ToDo</button>
+            {showAddToDoForm &&   <NewTodoForm addTodo={addTodo}/>  }  {/* passing a method as props */}
+          
         </div>
       </div>
     </div>

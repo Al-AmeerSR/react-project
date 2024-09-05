@@ -19,6 +19,7 @@ return(
                         rowNumber={todo.rowNumber}
                         rowAssignee={todo.rowAssignee}
                         rowDescription={todo.rowDescription}
+                        deleteTodo ={props.deleteTodo}
                         />
                     ))}
              </tbody>
